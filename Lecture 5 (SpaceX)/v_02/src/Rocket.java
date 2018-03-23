@@ -9,10 +9,10 @@ public class Rocket {
     private int velocity;
     private boolean check;
     private class Cabin{    // we have cabin with "start" button
-        public int mass;    // cabin mass
-        Cabin(int mass)
+        private int mass;    // cabin mass
+        Cabin(int m)
         {
-            this.mass=mass;
+            this.mass=m;
             System.out.println("cabin installed");
         }
         public void PressStartButton()
@@ -26,7 +26,7 @@ public class Rocket {
         check=true;
         if(args.length==3){
             if(asMyEnum(args[0])){
-                distance=DisanceToPlanet.valueOf(args[0]).distance*149597;   //*10^3 km
+                distance=PlanetDisances.valueOf(args[0]).distance*149597;   //*10^3 km
             }else{
                 distance=0;
                 check=false;
@@ -65,12 +65,9 @@ public class Rocket {
             cabin.PressStartButton();
             int i = 0,d=0;
             while (d < distance) {
-                n1.run();
-                n2.run();
-                n3.run();
-                if (n1.fuel > 0) velocity += n1.consumption * 3000 / n1.massStage();
-                if (n2.fuel > 0) velocity += n2.consumption * 3000 / n2.massStage();
-                if (n3.fuel > 0) velocity += n3.consumption * 3000 / n3.massStage();
+                velocity += n1.calculateVelocity();
+                velocity += n2.calculateVelocity();
+                velocity += n3.calculateVelocity();
                 i++;
                 d += velocity;
             }
@@ -87,7 +84,7 @@ public class Rocket {
     }
 
     private boolean asMyEnum(String str) {
-        for (DisanceToPlanet d : DisanceToPlanet.values()) {
+        for (PlanetDisances d : PlanetDisances.values()) {
             if (d.name().equalsIgnoreCase(str))
                 return true;
         }
@@ -101,5 +98,8 @@ public class Rocket {
             System.out.println("we havent enough fuel to fly off");
         }
     }
+
+
+
 
 }

@@ -1,8 +1,8 @@
 public class Nozzle {
-    public int fuel;
+    private int fuel;
     private int my_mass;
     private Engine engine;
-    public int consumption;
+    private int consumption;
 
     Nozzle(int power,int k){
         double d=Math.random()*200000+500000;
@@ -18,13 +18,21 @@ public class Nozzle {
         consumption=power/k;
     }
 
-    public void run(){
+    private void run(){
         if(fuel>0){
             fuel=engine.on(fuel,consumption/4);
         }
     }
 
-    public int massStage(){
+    public int calculateVelocity(){
+        run();
+        if(fuel > 0){
+            return consumption * 3000 / massStage();
+        }else{
+            return 0;
+        }
+    }
+    private int massStage(){
         return fuel+my_mass;
     }
 }

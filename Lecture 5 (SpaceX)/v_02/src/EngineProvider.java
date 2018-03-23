@@ -1,3 +1,3 @@
-public interface I_BurningFuel {
+public interface EngineProvider {
     int on(int c,int consumption);
 }

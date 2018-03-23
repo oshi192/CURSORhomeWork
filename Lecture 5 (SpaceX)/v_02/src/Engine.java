@@ -1,4 +1,4 @@
-abstract  class Engine implements I_BurningFuel{
+abstract  class Engine implements EngineProvider{
 
     @Override
     public int on(int c, int consumption) {
