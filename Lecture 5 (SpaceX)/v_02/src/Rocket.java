@@ -63,11 +63,8 @@ public class Rocket {
     public void launch(){
         if(check) {
             cabin.PressStartButton();
-            int i = 0;
-            int d = 0;
-            //System.out.println(distance);
+            int i = 0,d=0;
             while (d < distance) {
-
                 n1.run();
                 n2.run();
                 n3.run();
@@ -76,14 +73,8 @@ public class Rocket {
                 if (n3.fuel > 0) velocity += n3.consumption * 3000 / n3.massStage();
                 i++;
                 d += velocity;
-                //System.out.println("velocity:"+velocity+" days:"+i+" d="+d);
             }
-            if (velocity > 7900) {
-                System.out.println("we leave earth! and ");
-                System.out.println("time travel: " + i + "days; final speed : " + velocity / 1000.0 + "km/s");
-            } else {
-                System.out.println("we havent enough fuel to fly off");
-            }
+            displayInfo(velocity,i);
         }
     }
 
@@ -101,6 +92,14 @@ public class Rocket {
                 return true;
         }
         return false;
+    }
+    private void displayInfo(int velocity,int i){
+        if (velocity > 7900) {
+            System.out.println("we leave earth! and ");
+            System.out.println("time travel: " + i + "days; final speed : " + velocity / 1000.0 + "km/s");
+        } else {
+            System.out.println("we havent enough fuel to fly off");
+        }
     }
 
 }
