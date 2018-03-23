@@ -22,36 +22,7 @@ public class Rocket {
     }
 
     Rocket(String[] args){
-        // check args[]
-        check=true;
-        if(args.length==3){
-            if(asMyEnum(args[0])){
-                distance=PlanetDisances.valueOf(args[0]).distance*149597;   //*10^3 km
-            }else{
-                distance=0;
-                check=false;
-                System.out.println("invalid destination point: "+ args[0]);
-                System.out.println("try: MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO");
-            }
-            if(isNumber(args[1])){
-                power=Integer.parseInt(args[1])*1000;
-            }else{
-                power=0;
-                System.out.println("invalid input power parameter: "+ args[1]);
-                System.out.println("try: some like 10");
-            }
-            if(isNumber(args[2])){
-                mass=Integer.parseInt(args[2])*1000;
-            }else{
-                mass=0;
-                System.out.println("invalid input mass parameter: "+ args[2]);
-                System.out.println("try: some like 2000");
-            }
-        }else{
-            System.out.println("invalid input, try to enter 3 parameters,");
-            System.out.println("Like: VENUS 100000 2000000");
-        }
-        //
+        validation(args);        // check args[]
         n1=new Nozzle(power,4);
         n2=new Nozzle(power,4);
         n3=new Nozzle(power,2);
@@ -96,6 +67,37 @@ public class Rocket {
             System.out.println("time travel: " + i + "days; final speed : " + velocity / 1000.0 + "km/s");
         } else {
             System.out.println("we havent enough fuel to fly off");
+        }
+    }
+
+    private void validation(String[]args){
+        check=true;
+        if(args.length==3){
+            if(asMyEnum(args[0])){
+                distance=PlanetDisances.valueOf(args[0]).distance*149597;   //*10^3 km
+            }else{
+                distance=0;
+                check=false;
+                System.out.println("invalid destination point: "+ args[0]);
+                System.out.println("try: MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO");
+            }
+            if(isNumber(args[1])){
+                power=Integer.parseInt(args[1])*1000;
+            }else{
+                power=0;
+                System.out.println("invalid input power parameter: "+ args[1]);
+                System.out.println("try: some like 10");
+            }
+            if(isNumber(args[2])){
+                mass=Integer.parseInt(args[2])*1000;
+            }else{
+                mass=0;
+                System.out.println("invalid input mass parameter: "+ args[2]);
+                System.out.println("try: some like 2000");
+            }
+        }else{
+            System.out.println("invalid input, try to enter 3 parameters,");
+            System.out.println("Like: VENUS 100000 2000000");
         }
     }
 
