@@ -4,16 +4,11 @@ public class Nozzle {
     private Engine engine;
     private int consumption;
 
-    Nozzle(int power,int k){
+    Nozzle(int power,int k, Engine engine){
         double d=Math.random()*200000+500000;
         this.fuel=(int)d;
         my_mass=500000;
-        engine=new Engine() {
-            @Override
-            void check() {
-                System.out.println("engin - ok");
-            }
-        };
+        this.engine=engine;
         engine.check();
         consumption=power/k;
     }

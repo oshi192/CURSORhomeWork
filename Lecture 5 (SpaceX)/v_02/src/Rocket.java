@@ -8,6 +8,7 @@ public class Rocket {
     private Nozzle n3;
     private int velocity;
     private boolean check;
+    private Nozzle engine;
     private class Cabin{    // we have cabin with "start" button
         private int mass;    // cabin mass
         Cabin(int m)
@@ -23,9 +24,24 @@ public class Rocket {
 
     Rocket(String[] args){
         validation(args);        // check args[]
-        n1=new Nozzle(power,4);
-        n2=new Nozzle(power,4);
-        n3=new Nozzle(power,2);
+        n1=new Nozzle(power,4,new Engine() {
+            @Override
+            void check() {
+                System.out.println("engin - ok");
+            }
+        });
+        n2=new Nozzle(power,4,new Engine() {
+            @Override
+            void check() {
+                System.out.println("engin - ok");
+            }
+        });
+        n3=new Nozzle(power,2,new Engine() {
+            @Override
+            void check() {
+                System.out.println("engin - ok");
+            }
+        });
         velocity=0;
         cabin=new Cabin(50000);
         if(power==0||mass==0){check=false;System.out.println("error!! mass or power");}
