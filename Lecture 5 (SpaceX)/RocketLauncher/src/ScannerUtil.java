@@ -33,7 +33,7 @@ public class ScannerUtil {
         if(type==1){
             EngineVariants.displayEngineVariants();}
         if(type==2){
-            FuelTanksVariants.displayEngineVariants();}
+            FuelTanksVariants.displayFuelTanksVariants();}
         if(type==3){
             CabinVariants.displayCabinVariants();}
         if(type==4){

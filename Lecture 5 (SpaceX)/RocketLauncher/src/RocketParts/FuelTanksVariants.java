@@ -18,7 +18,7 @@ public enum FuelTanksVariants {
         this.weight =weight;
         this.width  =width;
     }
-    public static void displayEngineVariants(){
+    public static void displayFuelTanksVariants(){
 
         System.out.println("\n\tfuel tank variants:\n");
         System.out.println("#\tname\theight\twidth\tweight\tcapacity");
