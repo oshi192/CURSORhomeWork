@@ -3,6 +3,6 @@ public class RocketLauncher {
         do{
             PartInstaller SpaceX = new PartInstaller();
             SpaceX.Install();
-        }while(PartInstaller.checkStartApp());
+        }while(ScannerUtil.checkStartApp());
     }
 }
