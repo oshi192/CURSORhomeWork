@@ -1,4 +1,6 @@
-public enum EngineVariants implements EngineInterface{
+package RocketParts;
+
+public enum EngineVariants implements EngineInterface {
     E1(1,"toddler",25,3,20000,4,100,2000,new FuelTank()),E2(2,"merlyn",30,4,20000,18,300,5000, new FuelTank()),E3(3,"atlon",40,4,40000,16,400,8000, new FuelTank()),
     E4(4,"sirius5",30,4,30000,8,200,5000, new FuelTank()),E5(5,"BigBee",50,5,50000,24,500,10000, new FuelTank());
 

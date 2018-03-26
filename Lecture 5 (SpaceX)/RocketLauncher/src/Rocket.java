@@ -1,3 +1,5 @@
+import RocketParts.*;
+
 public class Rocket {
     private CabinInterface cabin;
     private EngineInterface e1;

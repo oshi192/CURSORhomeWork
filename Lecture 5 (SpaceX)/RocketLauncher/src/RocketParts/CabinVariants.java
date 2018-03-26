@@ -1,4 +1,6 @@
-public enum CabinVariants implements CabinInterface{
+package RocketParts;
+
+public enum CabinVariants implements CabinInterface {
     C1(1,"a0",8,3,15000,5),C2(2,"b3",6,2,12000,3),C3(3,"a2",8,3,20000,5),C4(4,"c3",10,4,25000,8),C5(5,"ff",12,4,26000,10);
     public final String name;
     public final int  id;

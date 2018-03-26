@@ -1,3 +1,7 @@
+import RocketParts.CabinVariants;
+import RocketParts.EngineVariants;
+import RocketParts.FuelTanksVariants;
+
 import java.util.Scanner;
 
 public class PartInstaller {

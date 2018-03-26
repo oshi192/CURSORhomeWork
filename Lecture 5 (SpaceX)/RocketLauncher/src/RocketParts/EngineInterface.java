@@ -1,3 +1,5 @@
+package RocketParts;
+
 public interface EngineInterface {
 
     static class FuelTank{
