@@ -25,4 +25,13 @@ public enum FuelTanksVariants {
             System.out.println(""+ftv.id+":\t"+ftv.name+"\t"+ftv.height+"\t\t"+ftv.width+"\t\t"+ftv.weight+"\t"+ftv.capacity);
         }
     }
+
+    public static FuelTanksVariants findFuelTank(int n){
+        for (FuelTanksVariants e : FuelTanksVariants.values()) {
+            if (e.id == n) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

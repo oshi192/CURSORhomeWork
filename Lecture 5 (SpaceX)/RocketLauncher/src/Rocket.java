@@ -1,15 +1,15 @@
 public class Rocket {
-    private Cabin cabin;
-    private Engine e1;
-    private Engine e2;
-    private Engine e3;
-    private Engine e4;
-    private Engine e5;
+    private CabinInterface cabin;
+    private EngineInterface e1;
+    private EngineInterface e2;
+    private EngineInterface e3;
+    private EngineInterface e4;
+    private EngineInterface e5;
     private long distance;
-    private int velocity;
+    private float velocity;
     private int enginesCount;
     private int time,time1,time2;
-    Rocket(){
+    public Rocket(){
         enginesCount=0;
         velocity=0;
         time=0;
@@ -19,59 +19,64 @@ public class Rocket {
     }
 
     public void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
-        Engine e=new Engine(ev,ftv);
         if(enginesCount==0){
-            e1=e;enginesCount++;
+            ev.setFuelTank(ftv);e1=ev;enginesCount++;
         }else if(enginesCount==1){
-            e2=e;enginesCount++;
+            ev.setFuelTank(ftv);e2=ev;enginesCount++;
         }else if(enginesCount==2){
-            e3=e;enginesCount++;
+            ev.setFuelTank(ftv);e3=ev;enginesCount++;
         }else if(enginesCount==3){
-            e4=e;enginesCount++;
+            ev.setFuelTank(ftv);e4=ev;enginesCount++;
         }else {
-            e5=e;enginesCount++;
+            ev.setFuelTank(ftv);e5=ev;enginesCount++;
         }
     }
     public void setCabin(CabinVariants cv){
-        cabin=new Cabin(cv);
+        cabin=cv;
     }
 
-    void displayParameters(){
-        cabin.displayInfo();
-        e1.displayInfo(1);
-        e2.displayInfo(2);
-        e3.displayInfo(3);
-        if(enginesCount>2){
-            e4.displayInfo(4);
-        }
-        if(enginesCount>3){
-            e5.displayInfo(5);
-        }
-    }
 
     void displayInfo(){
         System.out.println("velocity: "+velocity+"\ttime: "+time+"\ttimeTo1: "+time1+"\ttimeTo2: "+time2+"\tdistance: "+distance);
     }
-
-    public int run(){
-        int a=velocity;
-        velocity+=(e1.burnFuel())*15;
-        velocity+=(e2.burnFuel())*15;
-        velocity+=(e3.burnFuel())*15;
-        if(enginesCount>3)velocity+=(e4.burnFuel())*15;
-        if(enginesCount>4)velocity+=(e5.burnFuel())*15;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public float run(){
+        float a=velocity;
+        velocity+=4000000*powerSum()*1.f/getRocketMass();
         time++;
-        if(velocity>7900&&time1==0)time1=time;
-        if(velocity>11200&&time2==0)time2=time;
+        if(velocity>7900 && time1==0)time1=time;
+        if(velocity>11200 && time2==0)time2=time;
         distance+=velocity;
         return velocity-a;
     }
-    public int getVelocity(){
+    public float getVelocity(){
         return velocity;
     }
     public long getDistance(){
         return distance;
     }
 
+    private int getRocketMass(){
+        int mass=0;
+        mass+=cabin.getMass();
+        mass+=e1.getMass();
+        mass+=e2.getMass();
+        mass+=e3.getMass();
+        if(enginesCount>3){mass+=e4.getMass();}
+        if(enginesCount>4){mass+=e5.getMass();}
+        return mass;
+    }
+    private int powerSum(){
+        int power=0;
+        power+=e1.getPower();
+        power+=e2.getPower();
+        power+=e3.getPower();
+        if(enginesCount>3){power+=e4.getPower();}
+        if(enginesCount>4){power+=e5.getPower();}
+        return power;
+    }
 
+    public int getEnginesCount() {
+        return enginesCount;
+    }
 }

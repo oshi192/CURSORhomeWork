@@ -11,31 +11,37 @@ public class PartInstaller {
 
     public void Install(){  //instal engines to rocket and set Distance
         while(setDistance());
-        Falcon.setCabin(findCabin(checkAnswer(1,5,3)));
+        Falcon.setCabin(CabinVariants.findCabin(checkAnswer(1,5,3)));
         int y=checkAnswer(3,5,4);
         for(int i=0;i<y;i++){
-            Falcon.setEngine(findEngine(checkAnswer(1,5,1)),findFuelTank(checkAnswer(1,5,2)));
+            EngineVariants ev =EngineVariants.findEngine(checkAnswer(1,5,1));
+            FuelTanksVariants ftv=FuelTanksVariants.findFuelTank(checkAnswer(1,5,2));
+            while(ftv.width>ev.weight || ftv.height>ev.height){
+                System.out.println("FuelTank is too big: choose another one: smallr od equal height:"+ev.height+" width"+ev.width);
+                ftv=FuelTanksVariants.findFuelTank(checkAnswer(1,5,2));
+            }
+            Falcon.setEngine(ev,ftv );
         }
         start();        //start flying
     }
 
-    public void start(){
+    private void start(){
 
         while(Falcon.run()!=0);
         if(Falcon.getVelocity()>11200){
             while(Falcon.getDistance()<distance){
                 Falcon.run();
-            Falcon.displayInfo();}
+            }
         }else{
             System.out.println("Sory but we cannot leave Earth in this Rocket, try to build another one");
         }
         Falcon.displayInfo();
     }
 
-    public boolean setDistance(){
+    private boolean setDistance(){
         System.out.println("MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO,SUN");
         String s=sc.nextLine();
-        if(asMyEnum(s)){
+        if(PlanetDistances.asMyEnum(s)){
             distance=(int)(PlanetDistances.valueOf(s).distance*149597); //set Distance
             System.out.println("distance: "+distance*1000+"km");//*10^3 km
             return false;
@@ -44,30 +50,7 @@ public class PartInstaller {
             System.out.println("try: MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO");
         }return true;
     }
-    private CabinVariants findCabin(int n){
-        for (CabinVariants e : CabinVariants.values()) {
-            if (e.id == n) {
-                return e;
-            }
-        }
-        return null;
-    }
-    private FuelTanksVariants findFuelTank(int n){
-        for (FuelTanksVariants e : FuelTanksVariants.values()) {
-            if (e.id == n) {
-                return e;
-            }
-        }
-        return null;
-    }
-    private EngineVariants findEngine(int n) {
-        for (EngineVariants e : EngineVariants.values()) {
-            if (e.id == n) {
-                return e;
-            }
-        }
-        return null;
-    }
+
 
     private int checkAnswer(int min,int max,int type){   //alidation answers in menu
         if(type==1){EngineVariants.displayEngineVariants();}
@@ -96,14 +79,6 @@ public class PartInstaller {
             }
         }while (answer <min || answer > max);
         return answer;
-    }
-
-    private boolean asMyEnum(String str) {
-        for (PlanetDistances d : PlanetDistances.values()) {
-            if (d.name().equalsIgnoreCase(str))
-                return true;
-        }
-        return false;
     }
 
     public static boolean checkStartApp(){ //in the end we ask - one more time

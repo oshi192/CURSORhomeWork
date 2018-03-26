@@ -4,6 +4,5 @@ public class RocketLauncher {
             PartInstaller SpaceX = new PartInstaller();
             SpaceX.Install();
         }while(PartInstaller.checkStartApp());
-
     }
 }

@@ -5,4 +5,12 @@ public enum PlanetDistances {
     {
         this.distance=distance;
     }
+
+    public static boolean asMyEnum(String str) {
+        for (PlanetDistances d : PlanetDistances.values()) {
+            if (d.name().equalsIgnoreCase(str))
+                return true;
+        }
+        return false;
+    }
 }
