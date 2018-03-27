@@ -13,6 +13,11 @@ public class PartInstaller {
         sc = new Scanner(System.in);
         distance=0;
     }
+    public static void sTtart(){
+        do{
+            new PartInstaller().install();
+        }while(ScannerUtil.checkStartApp());
+    }
 
     public void install(){  //instal engines to rocket and set Distance
         while(ScannerUtil.setDistance()==0);
@@ -27,10 +32,10 @@ public class PartInstaller {
             }
             Falcon.setEngine(ev,ftv );
         }
-        start();        //start flying
+        fly();        //start flying
     }
 
-    private void start(){
+    private void fly(){
 
         while(Falcon.run()!=0);
         if(Falcon.getVelocity()>11200){
