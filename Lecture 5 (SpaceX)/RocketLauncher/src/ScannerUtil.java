@@ -1,6 +1,6 @@
-import rocket.parts.CabinVariants;
-import rocket.parts.EngineVariants;
-import rocket.parts.FuelTanksVariants;
+import workshop.parts.CabinVariants;
+import workshop.parts.EngineVariants;
+import workshop.parts.FuelTanksVariants;
 
 import java.util.Scanner;
 

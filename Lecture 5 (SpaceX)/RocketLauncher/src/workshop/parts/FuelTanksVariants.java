@@ -1,4 +1,4 @@
-package rocket.parts;
+package workshop.parts;
 
 public enum FuelTanksVariants {
     FT1(1,"alpha",20,3,1000,5000),FT2(2,"betta",25,3,2000,10000),FT3(3,"gama",30,4,3000,12000),

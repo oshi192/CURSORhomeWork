@@ -1,5 +1,6 @@
-
-import rocket.parts.*;
+import workshop.CabinInterface;
+import workshop.EngineInterface;
+import workshop.parts.*;
 
 public class Rocket {
     private CabinInterface cabin;
@@ -23,19 +24,19 @@ public class Rocket {
 
     public void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
         if(enginesCount==0){
-            ev.setFuelTank(ftv);e1=ev;enginesCount++;
+            e1=new Engine(ev,ftv);enginesCount++;
         }else if(enginesCount==1){
-            ev.setFuelTank(ftv);e2=ev;enginesCount++;
+            e2=new Engine(ev,ftv);enginesCount++;
         }else if(enginesCount==2){
-            ev.setFuelTank(ftv);e3=ev;enginesCount++;
+            e3=new Engine(ev,ftv);enginesCount++;
         }else if(enginesCount==3){
-            ev.setFuelTank(ftv);e4=ev;enginesCount++;
+            e4=new Engine(ev,ftv);enginesCount++;
         }else {
-            ev.setFuelTank(ftv);e5=ev;enginesCount++;
+            e5=new Engine(ev,ftv);enginesCount++;
         }
     }
     public void setCabin(CabinVariants cv){
-        cabin=cv;
+        cabin=new Cabin(cv);
     }
 
 
@@ -79,7 +80,4 @@ public class Rocket {
         return power;
     }
 
-    public int getEnginesCount() {
-        return enginesCount;
-    }
 }
