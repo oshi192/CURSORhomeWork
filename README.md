@@ -1,6 +1,7 @@
 #### RocketLauncher
 In this application you need to build a rocket to fly the planet
 destination point:    MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO
+
 you can choose 1 of 5 variants of cabins
 the Rocket can have 3-5 engines
 each engine have a fuel tank;
@@ -10,8 +11,6 @@ when all of parts instaled the rocket start fly
 if fuel ends in fuel tank engine stop working and when all engines stoped 
 we look at velocity 
 velocity > 11200 then we had left Earth and can drifting to our destination point
-
-
 #### steps how to pack this project on jar file:
       1) download or git clone
       2) go to src directory
