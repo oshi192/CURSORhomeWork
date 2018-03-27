@@ -14,7 +14,7 @@ public class PartInstaller {
         distance=0;
     }
 
-    public void Install(){  //instal engines to rocket and set Distance
+    public void install(){  //instal engines to rocket and set Distance
         while(ScannerUtil.setDistance()==0);
         Falcon.setCabin(CabinVariants.findCabin(ScannerUtil.checkAnswer(1,5,3)));
         int y=ScannerUtil.checkAnswer(3,5,4);
