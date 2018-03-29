@@ -1,6 +1,6 @@
 public class RocketLauncher {
     public static void main(String[] args) {
-        SpaceTravel spaceShip=new Rocket();
+        SpaceTravel spaceShip=new RocketInstaller();
         spaceShip.install();
     }
 }
