@@ -18,13 +18,13 @@ class Rocket {
         float a = velocity;
         velocity += 0.001 * powerSum() / getRocketMass();
         time++;
-        if (velocity > 7900 && time1 == 0) time1 = time;
-        if (velocity > 11200 && time2 == 0) time2 = time;
+        if (velocity > 7900 && time1 == 0) {time1 = time;}
+        if (velocity > 11200 && time2 == 0) {time2 = time;}
         distance += velocity;
         return velocity - a;
     }
 
-    public void CreateNewEngines() {
+    public void createNewEngines() {
         engines = new ArrayList<>();
     }
 
