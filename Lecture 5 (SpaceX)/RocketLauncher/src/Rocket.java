@@ -13,21 +13,6 @@ import java.util.ArrayList;
     private float velocity;
     private int time,time1,time2;
 
-
-    void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
-        engines.add(new Engine(ev,ftv));
-    }
-    void setCabin(CabinVariants cv){
-        cabin=new Cabin(cv);
-    }
-
-
-    void displayInfo(){
-        System.out.println("velocity: "+velocity+"\ttime: "+(time/(24*3600))+"\ttimeTo1: "+(time1/(24*3600))
-                +"\ttimeTo2: "+(time2/(24*3600))+"\tdistance: "+(distance/1000));
-    }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     float run(){
         float a=velocity;
         velocity+=0.001*powerSum()/getRocketMass();
@@ -38,35 +23,11 @@ import java.util.ArrayList;
         return velocity-a;
     }
 
-    float getVelocity(){
-        return velocity;
-    }
-
-    long getDistance(){
-        return distance;
-    }
-
-    private int getRocketMass(){
-        int mass=0;
-        for(EngineInterface ev:engines){
-            mass+=ev.getMass();
-        }
-        mass+=cabin.getMass();
-        return mass;
-    }
-    private int powerSum(){
-        int power=0;
-        for(EngineInterface ev:engines){
-            power+=ev.getMass();
-        }
-        return power;
-    }
-
     private void fly(){
             while(run()!=0);
         System.out.println(destination);
-            if(getVelocity()>11200){
-                while(getDistance()<destination){
+            if(velocity>11200){
+                while(distance<destination){
                    run();
                 }
             }else{
@@ -94,8 +55,35 @@ import java.util.ArrayList;
             }
             fly();        //start flying
         }while(ScannerUtil.checkStartApp());
+    }
 
+    private int getRocketMass(){
+        int mass=0;
+        for(EngineInterface ev:engines){
+            mass+=ev.getMass();
+            }
+        mass+=cabin.getMass();
+        return mass;
+    }
 
+    private int powerSum(){
+        int power=0;
+        for(EngineInterface ev:engines){
+            power+=ev.getMass();
+        }
+        return power;
+    }
+
+    void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
+            engines.add(new Engine(ev,ftv));
+    }
+
+    void setCabin(CabinVariants cv){
+            cabin=new Cabin(cv);
         }
 
+    void displayInfo(){
+        System.out.println("velocity: "+velocity+"\ttime: "+(time/(24*3600))+"\ttimeTo1: "+(time1/(24*3600))
+        +"\ttimeTo2: "+(time2/(24*3600))+"\tdistance: "+(distance/1000));
+    }
 }
