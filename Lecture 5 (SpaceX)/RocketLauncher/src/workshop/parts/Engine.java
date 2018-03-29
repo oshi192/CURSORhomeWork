@@ -1,8 +1,8 @@
 package workshop.parts;
 
-import workshop.EngineInterface;
+import workshop.EngineProvider;
 
-public class Engine implements EngineInterface {
+public class Engine implements EngineProvider {
 
 
     private final int  height;
@@ -24,10 +24,10 @@ public class Engine implements EngineInterface {
     }
 
     private class FuelTank {
-        int height;
-        int width;
-        int weight;
-        int capacity;
+        private int height;
+        private int width;
+        private int weight;
+        private int capacity;
 
         FuelTank(FuelTanksVariants ftv) {
             this.height = ftv.height;

@@ -1,6 +1,6 @@
 package workshop;
 
-public interface CabinInterface {
+public interface CabinProvider {
     //void pushStartButton();
     int getMass();
 

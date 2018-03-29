@@ -1,6 +1,6 @@
 package workshop;
 
-public interface EngineInterface {
+public interface EngineProvider {
     int getMass();
     int getPower();
 }

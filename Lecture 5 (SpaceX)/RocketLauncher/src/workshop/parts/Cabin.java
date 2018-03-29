@@ -1,8 +1,8 @@
 package workshop.parts;
 
-import workshop.CabinInterface;
+import workshop.CabinProvider;
 
-public class Cabin implements CabinInterface {
+public class Cabin implements CabinProvider {
     private final int  height;
     private final int  width;
     private final int  weight;
