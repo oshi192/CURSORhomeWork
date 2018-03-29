@@ -5,13 +5,13 @@ import workshop.EngineInterface;
 public class Engine implements EngineInterface {
 
 
-    public final int  height;
-    public final int  width;
-    public final int  weight;
-    public final int  power;
-    public final int  fuelConsumption;
-    public final int  fuelTankSpace;
-    public FuelTank ft ;
+    private final int  height;
+    private final int  width;
+    private final int  weight;
+    private final int  power;
+    private final int  fuelConsumption;
+    private final int  fuelTankSpace;
+    private FuelTank ft ;
     public Engine(EngineVariants ev,FuelTanksVariants ftv)
     {
         this.height=ev.height;
@@ -36,7 +36,7 @@ public class Engine implements EngineInterface {
             this.capacity = ftv.capacity;
         }
 
-        public int getWeight() {
+        int getWeight() {
             return weight;
         }
 

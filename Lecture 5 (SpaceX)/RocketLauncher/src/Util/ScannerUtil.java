@@ -1,3 +1,5 @@
+package Util;
+
 import workshop.parts.CabinVariants;
 import workshop.parts.EngineVariants;
 import workshop.parts.FuelTanksVariants;
@@ -5,13 +7,13 @@ import workshop.parts.FuelTanksVariants;
 import java.util.Scanner;
 
 public class ScannerUtil {
-    private static Scanner sc=new Scanner(System.in);
 
     private ScannerUtil() throws IllegalStateException {
-        throw new IllegalStateException("Can't create instance of ScannerUtil");
+        throw new IllegalStateException("Can't create instance of Util.ScannerUtil");
     }
 
     public static boolean checkStartApp(){
+        Scanner sc=new Scanner(System.in);
         String s;
         System.out.println("\none more time?\ny- yes\tn-no\n");
         do {
@@ -30,6 +32,7 @@ public class ScannerUtil {
     }
 
     public static int checkAnswer(int min,int max,int type){   //alidation answers in menu
+        Scanner sc=new Scanner(System.in);
         if(type==1){
             EngineVariants.displayEngineVariants();}
         if(type==2){
@@ -62,13 +65,14 @@ public class ScannerUtil {
     }
 
     public static long setDistance(){
+        Scanner sc=new Scanner(System.in);
         long distance;
         System.out.println("MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO,SUN");
         String s=sc.nextLine();
         if(PlanetDistances.asMyEnum(s)){
             distance=(int)(PlanetDistances.valueOf(s).distance*149597); //set Distance
             System.out.println("distance: "+distance*1000+"km");//*10^3 km
-            return distance;
+            return distance*1000;
         }else{
             System.out.println("invalid destination point: "+ s);
             System.out.println("try: MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO");

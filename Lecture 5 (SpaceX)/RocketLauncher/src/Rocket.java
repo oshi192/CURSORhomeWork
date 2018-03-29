@@ -1,83 +1,101 @@
+import Util.ScannerUtil;
 import workshop.CabinInterface;
 import workshop.EngineInterface;
 import workshop.parts.*;
 
-public class Rocket {
-    private CabinInterface cabin;
-    private EngineInterface e1;
-    private EngineInterface e2;
-    private EngineInterface e3;
-    private EngineInterface e4;
-    private EngineInterface e5;
-    private long distance;
-    private float velocity;
-    private int enginesCount;
-    private int time,time1,time2;
-    public Rocket(){
-        enginesCount=0;
-        velocity=0;
-        time=0;
-        time1=0;
-        time2=0;
-        distance=0;
-    }
+import java.util.ArrayList;
 
-    public void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
-        if(enginesCount==0){
-            e1=new Engine(ev,ftv);enginesCount++;
-        }else if(enginesCount==1){
-            e2=new Engine(ev,ftv);enginesCount++;
-        }else if(enginesCount==2){
-            e3=new Engine(ev,ftv);enginesCount++;
-        }else if(enginesCount==3){
-            e4=new Engine(ev,ftv);enginesCount++;
-        }else {
-            e5=new Engine(ev,ftv);enginesCount++;
-        }
+    class Rocket implements SpaceTravel{
+    private CabinInterface cabin;
+    private ArrayList<EngineInterface> engines;
+    private long distance;
+    private long destination;
+    private float velocity;
+    private int time,time1,time2;
+
+
+    void setEngine(EngineVariants ev, FuelTanksVariants ftv) {
+        engines.add(new Engine(ev,ftv));
     }
-    public void setCabin(CabinVariants cv){
+    void setCabin(CabinVariants cv){
         cabin=new Cabin(cv);
     }
 
 
     void displayInfo(){
-        System.out.println("velocity: "+velocity+"\ttime: "+time+"\ttimeTo1: "+time1+"\ttimeTo2: "+time2+"\tdistance: "+distance);
+        System.out.println("velocity: "+velocity+"\ttime: "+(time/(24*3600))+"\ttimeTo1: "+(time1/(24*3600))
+                +"\ttimeTo2: "+(time2/(24*3600))+"\tdistance: "+(distance/1000));
     }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public float run(){
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    float run(){
         float a=velocity;
-        velocity+=4000000*powerSum()*1.f/getRocketMass();
+        velocity+=0.001*powerSum()/getRocketMass();
         time++;
         if(velocity>7900 && time1==0)time1=time;
         if(velocity>11200 && time2==0)time2=time;
         distance+=velocity;
         return velocity-a;
     }
-    public float getVelocity(){
+
+    float getVelocity(){
         return velocity;
     }
-    public long getDistance(){
+
+    long getDistance(){
         return distance;
     }
 
     private int getRocketMass(){
         int mass=0;
+        for(EngineInterface ev:engines){
+            mass+=ev.getMass();
+        }
         mass+=cabin.getMass();
-        mass+=e1.getMass();
-        mass+=e2.getMass();
-        mass+=e3.getMass();
-        if(enginesCount>3){mass+=e4.getMass();}
-        if(enginesCount>4){mass+=e5.getMass();}
         return mass;
     }
     private int powerSum(){
         int power=0;
-        power+=e1.getPower();
-        power+=e2.getPower();
-        power+=e3.getPower();
-        if(enginesCount>3){power+=e4.getPower();}
-        if(enginesCount>4){power+=e5.getPower();}
+        for(EngineInterface ev:engines){
+            power+=ev.getMass();
+        }
         return power;
     }
+
+    private void fly(){
+            while(run()!=0);
+        System.out.println(destination);
+            if(getVelocity()>11200){
+                while(getDistance()<destination){
+                   run();
+                }
+            }else{
+                System.out.println("Sory but we cannot leave Earth in this Rocket, try to build another one");
+            }
+        displayInfo();
+    }
+
+    public void install(){  //instal engines to rocket and set Distance
+        do{
+            engines= new ArrayList<>();
+            do{
+                destination=ScannerUtil.setDistance();
+            }while(destination==0);
+            setCabin(CabinVariants.findCabin(ScannerUtil.checkAnswer(1,5,3)));
+            int y=ScannerUtil.checkAnswer(3,5,4);
+            for(int i=0;i<y;i++){
+                EngineVariants ev =EngineVariants.findEngine(ScannerUtil.checkAnswer(1,5,1));
+                FuelTanksVariants ftv=FuelTanksVariants.findFuelTank(ScannerUtil.checkAnswer(1,5,2));
+                while(ftv.width>ev.weight || ftv.height>ev.height){
+                    System.out.println("FuelTank is too big: choose another one: smallr od equal height:"+ev.height+" width"+ev.width);
+                    ftv=FuelTanksVariants.findFuelTank(ScannerUtil.checkAnswer(1,5,2));
+                }
+                setEngine(ev,ftv );
+            }
+            fly();        //start flying
+        }while(ScannerUtil.checkStartApp());
+
+
+        }
 
 }
