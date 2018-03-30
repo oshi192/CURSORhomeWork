@@ -23,7 +23,7 @@ public enum Planets {
 
         long distance;
         System.out.println("MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO,SUN");
-        String s=ScannerUtil.getScanner().nextLine();
+        String s=ScannerUtil.getStringValue();
         if(Planets.asMyEnum(s)){
             distance=(int)(Planets.valueOf(s).distance*149597); //set Distance
             System.out.println("distance: "+distance*1000+"km");//*10^3 km

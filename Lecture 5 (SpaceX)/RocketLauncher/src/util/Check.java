@@ -26,22 +26,17 @@ public class Check {
     }
 
     private static int checkNumber(int min, int max){
-        String s;
-        int answer;
+        String input;
         System.out.print("\nchose your option: ");
-        do {
-
-            while (!ScannerUtil.hasIntValue()) {
-                do {                            // to skip empty lines //
-                    s = ScannerUtil.getStringValue();
-                } while (s.equals(""));
-                System.out.println("it is not a number, try again \n");
+        while(true){
+            input=ScannerUtil.getStringValue();
+            if(input.matches("\\d+")) {
+                if (Integer.parseInt(input) >= min && Integer.parseInt(input) <= max) {
+                    return Integer.parseInt(input);
+                }
             }
-            answer = ScannerUtil.getIntValue();
-            if (answer < min || answer > max){
-                System.out.println("invalid number , try again :\nchose your option: ");
-            }
-        } while (answer < min || answer > max);
-        return answer;
+            System.out.println("invalid input , try again :\nchose your option: "+min+"-"+max);
+        }
     }
+
 }
