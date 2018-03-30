@@ -1,11 +1,11 @@
-import Util.Planets;
+import util.Planets;
 import workshop.CabinProvider;
 import workshop.EngineProvider;
 import workshop.parts.*;
 
 import java.util.ArrayList;
 
-class Rocket {
+class Rocket implements SpaceTravel{
     private CabinProvider cabin;
     private ArrayList<EngineProvider> engines;
     private long distance;
@@ -14,7 +14,7 @@ class Rocket {
     private int time, time1, time2;
 
 
-    float run() {
+    public float run() {
         float a = velocity;
         velocity += 0.001 * powerSum() / getRocketMass();
         time++;

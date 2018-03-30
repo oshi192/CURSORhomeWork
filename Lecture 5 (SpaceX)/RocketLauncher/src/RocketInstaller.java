@@ -1,12 +1,12 @@
-import Util.Check;
+import util.Check;
 import workshop.parts.CabinVariants;
 import workshop.parts.EngineVariants;
 import workshop.parts.FuelTanksVariants;
 
-public class RocketInstaller implements SpaceTravel{
-    private Rocket falcon;
-    RocketInstaller(){
-        falcon=new Rocket();
+public class RocketInstaller {
+    private SpaceTravel falcon;
+    RocketInstaller(SpaceTravel st){
+        falcon=st;
     }
 
     private void fly(){

@@ -1,6 +1,4 @@
-package Util;
-
-import java.util.Scanner;
+package util;
 
 public enum Planets {
     MOON(0.0025),VENUS(0.27),MERCURY(0.6),MARS(0.52),

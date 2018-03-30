@@ -1,4 +1,4 @@
-package Util;
+package util;
 
 import workshop.parts.CabinVariants;
 import workshop.parts.EngineVariants;
@@ -14,7 +14,7 @@ public class Check {
                 System.out.println("invalid answer try y or n");
             }
         } while (!("y".equalsIgnoreCase(s) || "n".equalsIgnoreCase(s)));
-        return (s.equalsIgnoreCase("y")) ? true : false;
+        return ("y".equalsIgnoreCase(s)) ? true : false;
     }
 
     public static int checkAnswer(int min, int max, int type) {   //alidation answers in menu
@@ -30,7 +30,8 @@ public class Check {
         int answer;
         System.out.print("\nchose your option: ");
         do {
-            while (!(ScannerUtil.getScanner().hasNextInt())) {
+
+            while (!ScannerUtil.hasIntValue()) {
                 do {                            // to skip empty lines //
                     s = ScannerUtil.getStringValue();
                 } while (s.equals(""));
