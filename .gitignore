@@ -1,4 +1,4 @@
-
+Game/.idea/*
+Game/target/*
 Lecture 5 (SpaceX)/*
-
-RocketLauncher.iml
+*.iml
