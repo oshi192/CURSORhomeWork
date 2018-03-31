@@ -1,12 +1,19 @@
 public class Race {
-    protected boolean isPreferance;
-    protected float kDamage;
-    protected float health;
-    protected int countActions;
-    protected int [] actions;
+
+    private  String name;
+
+    Race(int i){
+        switch (i){
+            case 1:name="Human";
+            case 2:name="Elfes";
+            case 3:name="Demons";
+        }
+    }
     Race(){
 
     }
 
-
+    public String getName() {
+        return name;
+    }
 }

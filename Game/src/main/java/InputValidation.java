@@ -1,15 +1,14 @@
-package util;
+public class InputValidation {
 
-import workshop.parts.CabinVariants;
-import workshop.parts.EngineVariants;
-import workshop.parts.FuelTanksVariants;
+    private InputValidation() throws IllegalStateException {
+        throw new IllegalStateException("Can't create instance of util.ScannerUtil");
+    }
 
-public class Check {
     public static boolean checkStartApp() {
         String s;
         System.out.println("\none more time?\ny- yes\tn-no\n");
         do {
-            s = ScannerUtil.getStringValue();
+            s = Reader.getString();
             if (!("y".equalsIgnoreCase(s) || "n".equalsIgnoreCase(s))) {
                 System.out.println("invalid answer try y or n");
             }
@@ -17,19 +16,11 @@ public class Check {
         return ("y".equalsIgnoreCase(s)) ? true : false;
     }
 
-    public static int checkAnswer(int min, int max, int type) {   //alidation answers in menu
-        if (type == 1) { EngineVariants.displayEngineVariants();}else
-        if (type == 2) { FuelTanksVariants.displayFuelTanksVariants();}else
-        if (type == 3) { CabinVariants.displayCabinVariants();}else
-        if (type == 4) { System.out.print("number of engines from 3 to 5 :");}
-        return checkNumber(min,max);
-    }
-
-    private static int checkNumber(int min, int max){
+    public static int checkNumber(int min, int max){
         String input;
         System.out.print("\nchose your option: ");
         while(true){
-            input=ScannerUtil.getStringValue();
+            input=Reader.getString();
             if(input.matches("\\d+")) {
                 if (Integer.parseInt(input) >= min && Integer.parseInt(input) <= max) {
                     return Integer.parseInt(input);
@@ -38,5 +29,4 @@ public class Check {
             System.out.println("invalid input , try again :\nchose your option: "+min+"-"+max);
         }
     }
-
 }
