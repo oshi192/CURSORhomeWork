@@ -18,9 +18,9 @@ public class Check {
     }
 
     public static int checkAnswer(int min, int max, int type) {   //alidation answers in menu
-        if (type == 1) { EngineVariants.displayEngineVariants();}
-        if (type == 2) { FuelTanksVariants.displayFuelTanksVariants();}
-        if (type == 3) { CabinVariants.displayCabinVariants();}
+        if (type == 1) { EngineVariants.displayEngineVariants();}else
+        if (type == 2) { FuelTanksVariants.displayFuelTanksVariants();}else
+        if (type == 3) { CabinVariants.displayCabinVariants();}else
         if (type == 4) { System.out.print("number of engines from 3 to 5 :");}
         return checkNumber(min,max);
     }

@@ -21,16 +21,16 @@ public enum Planets {
 
     public static long setDistance(){
 
-        long distance;
+        long distance=0;
         System.out.println("MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO,SUN");
         String s=ScannerUtil.getStringValue();
         if(Planets.asMyEnum(s)){
             distance=(int)(Planets.valueOf(s).distance*149597); //set Distance
             System.out.println("distance: "+distance*1000+"km");//*10^3 km
-            return distance*1000;
         }else{
             System.out.println("invalid destination point: "+ s);
             System.out.println("try: MERCURY,VENUS,EARTH,MOON,MARS,JUPITER,SATURN,URANUS,NEPTUNE,PLUTO");
-        }return 0;
+        }
+        return distance*1000;
     }
 }
