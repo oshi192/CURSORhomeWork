@@ -1,3 +1,7 @@
+package Util;
+
+import Util.Reader;
+
 public class InputValidation {
 
     private InputValidation() throws IllegalStateException {

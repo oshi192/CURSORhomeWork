@@ -1,18 +1,22 @@
+package Heroes;
+
+import Heroes.HeroesType;
+import lombok.Getter;
+
 /////
+@Getter
 public class Hero extends Race {
     private String name;
-    protected boolean isPreferance;
+    private boolean isPreferance;
     private int typeRace;
-    protected float kDamage;
-    protected float health;
-    protected int countActions;
+    private float health;
     public final static int [][][] actions= new int[][][]{
             {{10,10,13}, {11, 5,15}, {15,15, 2, 1}}, //Human{warior,archer,mag}
             {{ 9,12,15}, {13, 7, 3}, {15,15, 2, 3}},
             {{15, 5,10}, {14, 2, 1}, {15,15, 2, 2}}
     };
     private int type;
-    Hero(int typeRace,int type){
+    public Hero(int typeRace,int type){
         this.type=type;
         this.typeRace=typeRace;
         setName(type,typeRace);
@@ -23,16 +27,9 @@ public class Hero extends Race {
         isPreferance=(r==1)?false:true;
     }
 
-    public float getHealth() {
-        return health;
+    public void incHealth(int k){
+        health+=k;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
 
 }
