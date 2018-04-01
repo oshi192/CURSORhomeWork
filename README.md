@@ -12,13 +12,16 @@ the batle ends when all heroes of some team isn't alive.
 - print viner;
 
 #### Race and heroes:
-- Human
-    - Paladin
-    - Archer
-    - Mag
-    
+- Human         
+    - Paladin [10][10][13]
+    - Archer [11][5][15]
+    - Mag    [15][15] [2] [1]
 - Elves
+    - Warrior
+    - Super archer
+    - Druid
 - Demons
-
-
+    - Varvar
+    - Hells archer
+    - Necromant
 
