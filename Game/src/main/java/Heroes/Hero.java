@@ -19,7 +19,7 @@ public class Hero extends Race {
     public Hero(int typeRace,int type){
         this.type=type;
         this.typeRace=typeRace;
-        setName(type,typeRace);
+        setName(typeRace,type);
         health=100;
     }
     private void setName(int t,int r){

@@ -1,4 +1,5 @@
 import Heroes.Hero;
+import Heroes.HeroesType;
 import Heroes.Race;
 import Util.InputValidation;
 
@@ -26,9 +27,11 @@ public class Team {
         return name;
     }
     public void setHeroes(){
-        System.out.println("n----");
         for(int i=0;i<3;i++){
-            System.out.println("Chose your hero: 1-3");
+            System.out.println("Chose your hero:");
+            for(int j=0;j<3;j++) {
+                System.out.println(j+1+": " + HeroesType.valueOf("N" + (race.getType() * 10 + j+1)).name);
+            }
             team.add(new Hero(type,InputValidation.checkNumber(1,3)));
         }
     }
@@ -56,7 +59,6 @@ public class Team {
             }
         }
         return 0;
-
     }
     public void damagedOf(int damage){
         int position=(int)(random()*2+0.01);
@@ -83,5 +85,17 @@ public class Team {
         for(Hero h:team){
             System.out.print("\t\t"+h.getHealth());
         }
+    }
+    public void printTeam(){
+        System.out.println("____________________________________________");
+        System.out.println("|name\t:"+name);
+        System.out.println("|Race\t:"+race.getName());
+        System.out.println("|isAlive="+checkIsAlive());
+        int i=1;
+        for(Hero h:team){
+            System.out.println("|"+i+" person-\t:"+h.getName()+" ["+h.getHealth()+" HP]");
+            i++;
+        }
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     }
 }
