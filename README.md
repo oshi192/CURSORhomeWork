@@ -26,3 +26,8 @@ the batle ends when all heroes of some team isn't alive.
     - Hells archer-[14]-------------------[ 2]----[ 1]
     - Necromant----[15]-----[15]----------[ 2]----[ 2]
 ```
+#### how to start
+ - download or git clone
+ in directory with pom file: 
+ - mvn package
+ - java -cp target/Game-1.0-SNAPSHOT.jar Game
