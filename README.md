@@ -12,6 +12,7 @@ the batle ends when all heroes of some team isn't alive.
 - print viner;
 
 #### Race and heroes:
+```java
 - Human------------damge--healthing--%kritDamage-armor(%)
     - Paladin------[10]-------------------[10]----[13]
     - Archer-------[11]-------------------[ 5]----[15]
@@ -24,4 +25,4 @@ the batle ends when all heroes of some team isn't alive.
     - Varvar-------[15]-------------------[ 5]----[10]
     - Hells archer-[14]-------------------[ 2]----[ 1]
     - Necromant----[15]-----[15]----------[ 2]----[ 2]
-
+```
