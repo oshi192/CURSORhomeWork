@@ -1,9 +1,7 @@
 import Heroes.Hero;
 import Heroes.HeroType;
 import Util.InputValidation;
-
 import java.util.ArrayList;
-
 import static java.lang.Math.random;
 
 public class Team {
