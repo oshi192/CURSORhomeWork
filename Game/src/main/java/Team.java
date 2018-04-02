@@ -1,6 +1,5 @@
 import Heroes.Hero;
-import Heroes.HeroesType;
-import Heroes.Race;
+import Heroes.HeroType;
 import Util.InputValidation;
 
 import java.util.ArrayList;
@@ -10,106 +9,69 @@ import static java.lang.Math.random;
 public class Team {
 
     private String name;
-    private int type;
     private ArrayList<Hero> team;
-    private Race race;
 
     Team(String name){
         this.name=name;
-    }
-    public void setRace(int i) {
-        race=new Heroes.Race(i);
-        type=i;
         team=new ArrayList<Hero>();
     }
 
     public String getName() {
         return name;
     }
-    public void setHeroes(){
+
+    public void setHeroes(int a){
         for(int i=0;i<3;i++){
             System.out.println("Chose your hero:");
-            for(int j=0;j<3;j++) {
-                System.out.print(j+1+": " + HeroesType.valueOf("N" + (race.getType() * 10 + j+1)).name);
-                System.out.print(" | damage: "+Hero.actions[race.getType()-1][j][0]+"HP");
-                if(j==2){
-                    System.out.print(" | healing : "+Hero.actions[race.getType()-1][j][1]+"HP");
-                    System.out.print(" | %krit damage: "+Hero.actions[race.getType()-1][j][2]);
-                    System.out.print(" | armor : "+Hero.actions[race.getType()-1][j][3]);
-                }
-                else {
-                    System.out.print(" | %krit damage: " + Hero.actions[race.getType() - 1][j][1]);
-                    System.out.print(" | armor : "+Hero.actions[race.getType()-1][j][2]);
-                }
-                System.out.println();
+            for(int j=1;j<=3;j++) {
+                HeroType.valueOf("C"+a+j).getInfo();
             }
-            team.add(new Hero(type,InputValidation.checkNumber(1,3)));
+            int k=InputValidation.checkNumber(1,3);
+            team.add(new Hero(HeroType.valueOf("C"+a+k)));
         }
     }
+
     public boolean checkIsAlive(){
         for(Hero h:team){
             if(h.getHealth()>0){return true;}
         }
         return false;
     }
+
     public int calculateDamage(){
         int position=(int)(random()*2+0.01);
+        HeroType h;
         for(int i=0;i<3;i++){
             if(team.get((position+i)%3).getHealth()>0) {
-                if(team.get((position+i)%3).getType()==2&&random()*2>1){
-                    int k=Hero.actions[type-1][team.get((position+i)%3).getType()-1][1]*
-                            ((random()< Hero.actions[type-1][team.get((position+i)%3).getType()-1][2]/100.f)?2:1);
-                    addHeath(k);
-                    System.out.print(name+":"+team.get((position+i)%3).getName()+" ["+team.get((position+i)%3).getHealth()+" HP] >>>> ");
+                h=team.get((position+i)%3).getHeroType();
+                System.out.print(name+" | "+h.getRace()+" "+h.getType());
+                System.out.print(" ["+team.get((position+i)%3).getHealth()+"hp] >>>>> ");
+                if(h.getHealling() != 0 && random()*3 < 1){
+                    damaged(h.getHealling());
                     return 0;
                 }
-                float krit=Hero.actions[type-1][team.get((position+i)%3).getType()-1][((position+i)%3==2)?2:1]/100.f;
-                int k=Hero.actions[type-1][team.get((position+i)%3).getType()-1][0]*((random()<krit)?2:1);
-                System.out.print(name+":["+race.getName()+"]"+team.get((position+i)%3).getName()+" "+team.get((position+i)%3).getHealth()+((random()<krit)?"krit!!":"")+" >>>> ");
-                return  k;
+                return h.getDamage() * ( (random()<(h.getCritical()/100.f)) ? 2 : 1 )*(-1);
             }
         }
         return 0;
     }
 
-    public void damagedOf(int damage){
+
+    public void damaged(int inc){
+        if(inc==0)return;
         int position=(int)(random()*2+0.01);
+        HeroType h;
         for(int i=0;i<3;i++){
             if(team.get((position+i)%3).getHealth()>0) {
-                int k=team.get((position+i)%3).getType();
-                int y=(int)(damage*((100-Hero.actions[type-1][team.get((position+i)%3).getType()-1][k==3?3:2])/100.f));
-                System.out.println(name+":["+race.getName()+"]"+team.get((position+i)%3).getName()+" ["+team.get((position+i)%3).getHealth()+" HP] -"+y+"(damage)");
-                team.get((position+i)%3).incHealth(-1*y);
+                h=team.get((position+i)%3).getHeroType();
+                int damage=(int)(inc*(100-h.getArmor())/100.f);
+                System.out.print(damage+">>>>>"+name+" | "+h.getRace()+" "+h.getType());
+                System.out.println(" ["+team.get((position+i)%3).getHealth()+"hp]");
+                team.get((position+i)%3).incHealth(damage);
                 return;
             }
         }
     }
 
-    private void addHeath(int k ){
-        int position=(int)(random()*2+0.01);
-        for(int i=0;i<3;i++){
-            if(team.get((position+i)%3).getHealth()>0) {
-                team.get((position+i)%3).incHealth(k);
-                System.out.println(name+":"+team.get((position+i)%3).getName()+" "+team.get((position+i)%3).getHealth()+"-"+k);
-                return;
-            }
-        }
-    }
-    public void printAllHp(){
-        for(Hero h:team){
-            System.out.print("\t\t"+h.getHealth());
-        }
-    }
-    public void printTeam(){
-        System.out.println("____________________________________________");
-        System.out.println("|name\t:"+name);
-        System.out.println("|Race\t:"+race.getName());
-        System.out.println("|isAlive="+checkIsAlive());
-        int i=1;
-        for(Hero h:team){
-            System.out.println("|"+i+" person-\t:"+h.getName()+" ["+h.getHealth()+" HP]");
-            i++;
-        }
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-    }
+
 }

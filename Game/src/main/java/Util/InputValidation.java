@@ -1,7 +1,5 @@
 package Util;
 
-import Util.Reader;
-
 public class InputValidation {
 
     private InputValidation() throws IllegalStateException {
@@ -33,4 +31,5 @@ public class InputValidation {
             System.out.println("invalid input , try again :\nchose your option: "+min+"-"+max);
         }
     }
+
 }
