@@ -13,7 +13,7 @@ the batle ends when all heroes of some team isn't alive.
 
 #### Race and heroes:
 ```java
-- Human------------damge--healthing--%kritDamage-armor(%)
+- Human------------damge---healing---%kritDamage-armor(%)
     - Paladin------[10]-------------------[10]----[13]
     - Archer-------[11]-------------------[ 5]----[15]
     - Mag----------[15]-----[15]----------[ 2]----[ 1]
