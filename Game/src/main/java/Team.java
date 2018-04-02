@@ -76,7 +76,8 @@ public class Team {
         int position=(int)(random()*2+0.01);
         for(int i=0;i<3;i++){
             if(team.get((position+i)%3).getHealth()>0) {
-                int y=(int)(damage*((100-Hero.actions[type-1][team.get((position+i)%3).getType()-1][((position+i)%3==2)?3:2])/100.f));
+                int k=team.get((position+i)%3).getType();
+                int y=(int)(damage*((100-Hero.actions[type-1][team.get((position+i)%3).getType()-1][k==3?3:2])/100.f));
                 System.out.println(name+":["+race.getName()+"]"+team.get((position+i)%3).getName()+" ["+team.get((position+i)%3).getHealth()+" HP] -"+y+"(damage)");
                 team.get((position+i)%3).incHealth(-1*y);
                 return;
