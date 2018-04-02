@@ -9,7 +9,7 @@ public class Race {
         type=i;
         switch (i){
             case 1:name="Human";break;
-            case 2:name="Elfes";break;
+            case 2:name="Elves";break;
             case 3:name="Demons";break;
         }
     }

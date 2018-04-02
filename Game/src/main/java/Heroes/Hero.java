@@ -1,9 +1,7 @@
 package Heroes;
 
-import Heroes.HeroesType;
 import lombok.Getter;
 
-/////
 @Getter
 public class Hero extends Race {
     private String name;

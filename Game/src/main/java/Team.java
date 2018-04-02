@@ -30,7 +30,18 @@ public class Team {
         for(int i=0;i<3;i++){
             System.out.println("Chose your hero:");
             for(int j=0;j<3;j++) {
-                System.out.println(j+1+": " + HeroesType.valueOf("N" + (race.getType() * 10 + j+1)).name);
+                System.out.print(j+1+": " + HeroesType.valueOf("N" + (race.getType() * 10 + j+1)).name);
+                System.out.print(" | damage: "+Hero.actions[race.getType()-1][j][0]+"HP");
+                if(j==2){
+                    System.out.print(" | healing : "+Hero.actions[race.getType()-1][j][1]+"HP");
+                    System.out.print(" | %krit damage: "+Hero.actions[race.getType()-1][j][2]);
+                    System.out.print(" | armor : "+Hero.actions[race.getType()-1][j][3]);
+                }
+                else {
+                    System.out.print(" | %krit damage: " + Hero.actions[race.getType() - 1][j][1]);
+                    System.out.print(" | armor : "+Hero.actions[race.getType()-1][j][2]);
+                }
+                System.out.println();
             }
             team.add(new Hero(type,InputValidation.checkNumber(1,3)));
         }
@@ -60,17 +71,19 @@ public class Team {
         }
         return 0;
     }
+
     public void damagedOf(int damage){
         int position=(int)(random()*2+0.01);
         for(int i=0;i<3;i++){
             if(team.get((position+i)%3).getHealth()>0) {
-                int y=(int)(damage*((100-Hero.actions[type-1][team.get((position+i)%3).getType()-1][2])/100.f));
+                int y=(int)(damage*((100-Hero.actions[type-1][team.get((position+i)%3).getType()-1][((position+i)%3==2)?3:2])/100.f));
                 System.out.println(name+":["+race.getName()+"]"+team.get((position+i)%3).getName()+" ["+team.get((position+i)%3).getHealth()+" HP] -"+y+"(damage)");
                 team.get((position+i)%3).incHealth(-1*y);
                 return;
             }
         }
     }
+
     private void addHeath(int k ){
         int position=(int)(random()*2+0.01);
         for(int i=0;i<3;i++){

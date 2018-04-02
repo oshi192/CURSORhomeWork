@@ -21,12 +21,14 @@ public class Batle {
         team2.setRace(InputValidation.checkNumber(1,3));
         team2.setHeroes();
     }
+
     public void startBatle() throws InterruptedException {
         int y=0;
         move=(random()*2<1)?1:-1;
         team1.printTeam();
         team2.printTeam();
         sleep(1000);
+
         while(team1.checkIsAlive()&&team2.checkIsAlive()){
             y++;
             System.out.print("step "+y+":\t");
@@ -37,16 +39,12 @@ public class Batle {
             }
             move*=-1;
             sleep(10);
-            if(y%10==0){
-                team1.printTeam();
-                team2.printTeam();
-            }
         }
-        team1.printTeam();
-        team2.printTeam();
     }
 
     public void printResult(){
+        team1.printTeam();
+        team2.printTeam();
         System.out.println(team1.getName()+": is alive="+team1.checkIsAlive());
         System.out.println(team2.getName()+": is alive="+team2.checkIsAlive());
         System.out.println("win :"+((move<0)?team1.getName():team2.getName()));
