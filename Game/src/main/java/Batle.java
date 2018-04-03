@@ -1,6 +1,6 @@
-import Heroes.HeroType;
-import Util.InputValidation;
-import Util.Reader;
+import heroes.HeroType;
+import util.InputValidation;
+import util.Reader;
 
 import static java.lang.Math.random;
 import static java.lang.Thread.sleep;

@@ -1,6 +1,6 @@
-import Heroes.Hero;
-import Heroes.HeroType;
-import Util.InputValidation;
+import heroes.Hero;
+import heroes.HeroType;
+import util.InputValidation;
 import java.util.ArrayList;
 import static java.lang.Math.random;
 
