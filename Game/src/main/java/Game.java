@@ -4,7 +4,7 @@ public class Game {
         Battle battle = new Battle();
         battle.setNames();
         battle.chooseTeam();
-        battle.startBatle();
+        battle.startBattle();
         battle.printResult();
     }
 }

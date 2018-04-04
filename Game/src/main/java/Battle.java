@@ -28,7 +28,7 @@ public class Battle {
         team2.setHeroes(InputValidation.checkNumber(1, 3));
     }
 
-    public void startBatle() {
+    public void startBattle() {
         int y = 0;
         move = (random() * 2 < 1) ? 1 : -1;
         while (team1.checkIsAlive() && team2.checkIsAlive()) {
