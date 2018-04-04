@@ -19,19 +19,19 @@ public class Reader {
         return fin;
     }
 
-    public static Scanner getScanner(){
-        if(sc==null){
+    public static Scanner getScanner() {
+        if (sc == null) {
             return new Scanner(System.in);
         }
         return sc;
     }
 
-    public static String getString(){
-        return  getScanner().nextLine();
+    public static String getString() {
+        return getScanner().nextLine();
     }
 
-    public static int getInt(){
-        return  getScanner().nextInt();
+    public static int getInt() {
+        return getScanner().nextInt();
     }
 
 }

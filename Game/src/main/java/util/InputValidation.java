@@ -18,17 +18,17 @@ public class InputValidation {
         return ("y".equalsIgnoreCase(s)) ? true : false;
     }
 
-    public static int checkNumber(int min, int max){
+    public static int checkNumber(int min, int max) {
         String input;
         System.out.print("\nchose your option: ");
-        while(true){
-            input=Reader.getString();
-            if(input.matches("\\d+")) {
+        while (true) {
+            input = Reader.getString();
+            if (input.matches("\\d+")) {
                 if (Integer.parseInt(input) >= min && Integer.parseInt(input) <= max) {
                     return Integer.parseInt(input);
                 }
             }
-            System.out.println("invalid input , try again :\nchose your option: "+min+"-"+max);
+            System.out.println("invalid input , try again :\nchose your option: " + min + "-" + max);
         }
     }
 
