@@ -4,7 +4,7 @@ import util.Reader;
 
 import static java.lang.Math.random;
 
-public class Batle {
+public class Battle {
     private Team team1;
     private Team team2;
     private int move;
@@ -48,6 +48,6 @@ public class Batle {
     public void printResult() {
         System.out.println(team1.getName() + ": is alive=" + team1.checkIsAlive());
         System.out.println(team2.getName() + ": is alive=" + team2.checkIsAlive());
-        System.out.println("win :" + ((move < 0) ? team1.getName() : team2.getName()));
+        System.out.println("won :" + ((move < 0) ? team1.getName() : team2.getName()));
     }
 }
