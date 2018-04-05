@@ -15,7 +15,7 @@ public class InputValidation {
                 System.out.println("invalid answer try y or n");
             }
         } while (!("y".equalsIgnoreCase(s) || "n".equalsIgnoreCase(s)));
-        return ("y".equalsIgnoreCase(s)) ? true : false;
+        return "y".equalsIgnoreCase(s);
     }
 
     public static int checkNumber(int min, int max) {
