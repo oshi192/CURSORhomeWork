@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.random;
 
-public class Team {
+class Team {
 
     private String name;
     private ArrayList<Hero> team;
@@ -16,11 +16,11 @@ public class Team {
         team = new ArrayList<>();
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setHeroes(int a) {
+    void setHeroes(int a) {
         for (int i = 0; i < 3; i++) {
             System.out.println("Chose your hero:");
             for (int j = 1; j <= 3; j++) {
@@ -31,7 +31,7 @@ public class Team {
         }
     }
 
-    public boolean checkIsAlive() {
+    boolean checkIsAlive() {
         for (Hero h : team) {
             if (h.getHealth() > 0) {
                 return true;
@@ -40,7 +40,7 @@ public class Team {
         return false;
     }
 
-    public int calculateDamage() {
+    int calculateDamage() {
         int position = (int) (random() * 2 + 0.01);
         HeroType h;
         for (int i = 0; i < 3; i++) {
@@ -61,7 +61,7 @@ public class Team {
     }
 
 
-    public void damaged(int inc) {
+    void damaged(int inc) {
         if (inc == 0) return;
         int position = (int) (random() * 2 + 0.01);
         HeroType h;
