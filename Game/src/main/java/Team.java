@@ -13,7 +13,7 @@ public class Team {
 
     Team(String name) {
         this.name = name;
-        team = new ArrayList<Hero>();
+        team = new ArrayList<>();
     }
 
     public String getName() {
@@ -44,12 +44,14 @@ public class Team {
         int position = (int) (random() * 2 + 0.01);
         HeroType h;
         for (int i = 0; i < 3; i++) {
-            if (team.get((position + i) % 3).getHealth() > 0) {
+            boolean isAlive = team.get((position + i) % 3).getHealth() > 0;
+            if (isAlive) {
                 h = team.get((position + i) % 3).getHeroType();
                 System.out.print(name + " | " + h.getRace() + " " + h.getType());
                 System.out.print(" [" + team.get((position + i) % 3).getHealth() + "hp] >>>>> ");
-                if (h.getHealling() != 0 && random() * 3 < 1) {
-                    damaged(h.getHealling());
+                boolean canHealing = h.getHealing() != 0 && random() * 3 < 1;
+                if (canHealing) {
+                    damaged(h.getHealing());
                     return 0;
                 }
                 return h.getDamage() * ((random() < (h.getCritical() / 100.f)) ? 2 : 1) * (-1);
@@ -64,7 +66,8 @@ public class Team {
         int position = (int) (random() * 2 + 0.01);
         HeroType h;
         for (int i = 0; i < 3; i++) {
-            if (team.get((position + i) % 3).getHealth() > 0) {
+            boolean isAlive = team.get((position + i) % 3).getHealth() > 0;
+            if (isAlive) {
                 h = team.get((position + i) % 3).getHeroType();
                 int damage = (int) (inc * (100 - h.getArmor()) / 100.f);
                 System.out.print(damage + ">>>>>" + name + " | " + h.getRace() + " " + h.getType());
