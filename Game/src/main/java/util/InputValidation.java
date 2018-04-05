@@ -6,7 +6,7 @@ public class InputValidation {
         throw new IllegalStateException("Can't create instance of util.ScannerUtil");
     }
 
-    public static int checkNumber(int min, int max) {
+    public static int getNumber(int min, int max) {
         String input;
         System.out.print("\nchose your option: ");
         while (true) {

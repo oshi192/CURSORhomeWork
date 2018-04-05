@@ -21,11 +21,11 @@ class Battle {
         for (int i = 1; i <= 3; i++) {
             System.out.println(i + ") " + HeroType.valueOf("C" + i + 1).getRace());
         }
-        team1.setHeroes(InputValidation.checkNumber(1, 3));
+        team1.setHeroes(InputValidation.getNumber(1, 3));
         for (int i = 1; i <= 3; i++) {
             System.out.println(i + ") " + HeroType.valueOf("C" + i + 1).getRace());
         }
-        team2.setHeroes(InputValidation.checkNumber(1, 3));
+        team2.setHeroes(InputValidation.getNumber(1, 3));
     }
 
     void startBattle() {
