@@ -1,3 +1,4 @@
+
 import heroes.Hero;
 import heroes.HeroType;
 import util.InputValidation;
@@ -26,7 +27,7 @@ class Team {
         }
     }
 
-    void chooseHero(int a) {
+    private void chooseHero(int a) {
         System.out.println("Chose your hero:");
         for (int j = 1; j <= 3; j++) {
             HeroType.valueOf("C" + a + j).getInfo();
@@ -51,13 +52,14 @@ class Team {
         for (int i = 0; i < 3; i++) {
             boolean isAlive = team.get((position + i) % 3).getHealth() > 0;
             if (isAlive) {
-                damage = getDamage((position + i) % 3, 0);
+                damage = getDamage((position + i) % 3);
             }
         }
         return damage;
     }
 
-    int getDamage(int i, int a) {
+    private int getDamage(int i) {
+        int a = 0;
         HeroType h = team.get(i).getHeroType();
         System.out.print(name + " | " + h.getRace() + " " + h.getType());
         System.out.print(" [" + team.get(i).getHealth() + "hp] >>>>> ");
@@ -72,16 +74,17 @@ class Team {
 
     void damaged(int inc) {
         int position = (int) (random() * 2 + 0.01);
+        boolean damaged=true;
         for (int i = 0; i < 3; i++) {
             boolean isAlive = team.get((position + i) % 3).getHealth() > 0;
-            if (isAlive) {
+            if (isAlive&&damaged) {
                 setDamage((position + i) % 3, inc);
-                return;
+                damaged=false;
             }
         }
     }
 
-    void setDamage(int i, int inc) {
+    private void setDamage(int i, int inc) {
         HeroType h = team.get(i).getHeroType();
         int damage = (int) (inc * (100 - h.getArmor()) / 100.f);
         System.out.print(damage + ">>>>>" + name + " | " + h.getRace() + " " + h.getType());

@@ -9,23 +9,21 @@ class Battle {
     private Team team2;
     private int move;
 
-    void setNames() {
+    void setNamesAndRaces() {
         System.out.println("Enter your first player name: ");
         team1 = new Team(Reader.getString());
         System.out.println("Enter second player name: ");
         team2 = new Team(Reader.getString());
+        chooseTeam(team1);
+        chooseTeam(team2);
     }
 
-    void chooseTeam() {
-        System.out.println(team1.getName() + " choose team race: ");
+    private void chooseTeam(Team t) {
+        System.out.println(t.getName() + " choose team race: ");
         for (int i = 1; i <= 3; i++) {
             System.out.println(i + ") " + HeroType.valueOf("C" + i + 1).getRace());
         }
-        team1.setHeroes(InputValidation.getNumber(1, 3));
-        for (int i = 1; i <= 3; i++) {
-            System.out.println(i + ") " + HeroType.valueOf("C" + i + 1).getRace());
-        }
-        team2.setHeroes(InputValidation.getNumber(1, 3));
+        t.setHeroes(InputValidation.getNumber(1, 3));
     }
 
     void startBattle() {

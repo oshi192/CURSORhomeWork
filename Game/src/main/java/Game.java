@@ -2,8 +2,7 @@
 public class Game {
     public static void main(String[] args) {
         Battle battle = new Battle();
-        battle.setNames();
-        battle.chooseTeam();
+        battle.setNamesAndRaces();
         battle.startBattle();
         battle.printResult();
     }
